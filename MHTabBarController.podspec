@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = '1.0.0'
   s.platform 	 = :ios
   s.ios.deployment_target = '6.0'
-  s.summary      = 'Fork from https://github.com/mhaddl/MHCustomTabBarController. Implement the iOS native 'hidesBottomBarWhenPushed' property'
+  s.summary      = 'Fork from https://github.com/mhaddl/MHCustomTabBarController. Implement the iOS native hidesBottomBarWhenPushed property'
   s.license      = 'MIT'
   s.homepage     = 'https://github.com/Vienta/MHCustomTabBarController'
   s.requires_arc = true
