@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     'Vienta' => 'vienta.me'
   }
   s.source = {
-    :git => 'https://github.com/Vienta/MHCustomTabBarController.git'
+    :git => 'git@github.com:Vienta/MHCustomTabBarController.git'
     :tag => '2.0.0'
   }
   s.source_files = 'MHCustomTabBarController/*.{m,h}'
