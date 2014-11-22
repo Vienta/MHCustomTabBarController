@@ -21,6 +21,7 @@
  */
 
 #import "MHCustomTabBarController.h"
+#import "MHNavigationController.h"
 
 #import "MHTabBarSegue.h"
 
@@ -39,6 +40,41 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
     [super viewDidLoad];
     
     self.viewControllersByIdentifier = [NSMutableDictionary dictionary];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newViewControllerWillShow:) name:MHNavigationControllerViewControllerWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newViewControllerDidShow:) name:MHNavigationControllerViewControllerDidShowNotification object:nil];
+}
+
+- (void)newViewControllerWillShow:(NSNotification *)noti
+{
+    UIViewController *notiViewController = noti.object;
+    MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
+    UIViewController *rootViewController = [[nav viewControllers] objectAtIndex:0];
+    if (![notiViewController isEqual:rootViewController]) {
+        [rootViewController.view addSubview:self.tabbar];
+    } else {
+        
+    }
+    [self tabbarConstraint];
+    
+}
+
+- (void)tabbarConstraint
+{
+    self.tabbar.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:self.tabbar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.tabbar.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    [self.tabbar.superview addConstraint:constraint1];
+}
+
+- (void)newViewControllerDidShow:(NSNotification *)noti
+{
+    UIViewController *notiViewController = noti.object;
+    MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
+    UIViewController *rootViewController = [[nav viewControllers] objectAtIndex:0];
+    
+    if ([notiViewController isEqual:rootViewController]) {
+        [self.view addSubview:self.tabbar];
+    }
+    [self tabbarConstraint];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -58,7 +94,7 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-   
+    
     if (![segue isKindOfClass:[MHTabBarSegue class]]) {
         [super prepareForSegue:segue sender:sender];
         return;
@@ -74,14 +110,14 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
     for (UIButton *aButton in self.buttons) {
         [aButton setSelected:NO];
     }
-        
+    
     UIButton *button = (UIButton *)sender;
     [button setSelected:YES];
     self.destinationIdentifier = segue.identifier;
     self.destinationViewController = [self.viewControllersByIdentifier objectForKey:self.destinationIdentifier];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:MHCustomTabBarControllerViewControllerChangedNotification object:nil]; 
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:MHCustomTabBarControllerViewControllerChangedNotification object:nil];
+    
     
 }
 
