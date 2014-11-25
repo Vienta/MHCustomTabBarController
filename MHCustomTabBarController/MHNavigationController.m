@@ -8,6 +8,7 @@
 
 #define KEY_WINDOW  [[UIApplication sharedApplication]keyWindow]
 #define TOP_VIEW  [[UIApplication sharedApplication]keyWindow].rootViewController.view
+#define TOP_VIEW_WIDTH (TOP_VIEW.frame.size.width)
 
 
 #import "MHNavigationController.h"
@@ -39,6 +40,7 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
     if (self) {
         // Custom initialization
         [self setUp];
+        
     }
     return self;
 }
@@ -78,7 +80,7 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
     [TOP_VIEW addSubview:shadowImageView];
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
-                                                                                 action:@selector(paningGestureReceive:)];
+                                                                                action:@selector(paningGestureReceive:)];
     recognizer.delegate = self;
     [recognizer delaysTouchesBegan];
     [self.view addGestureRecognizer:recognizer];
@@ -150,15 +152,16 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
 // set lastScreenShotView 's position and alpha when paning
 - (void)moveViewWithX:(float)x
 {
-    x = x>320?320:x;
+    x = x>TOP_VIEW_WIDTH?TOP_VIEW_WIDTH:x;
     x = x<0?0:x;
     
     CGRect frame = TOP_VIEW.frame;
     frame.origin.x = x;
     TOP_VIEW.frame = frame;
     
-    float scale = (x/6400)+0.95;
+    float scale = (x/(20*TOP_VIEW_WIDTH))+0.95;
     float alpha = 0.4 - (x/800);
+    NSLog(@"scale = %f, alpha = %f", scale, alpha);
     
     lastScreenShotView.transform = CGAffineTransformMakeScale(scale, scale);
     blackMask.alpha = alpha;
@@ -214,7 +217,7 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
         if (touchPoint.x - startTouch.x > 50)
         {
             [UIView animateWithDuration:0.3 animations:^{
-                [self moveViewWithX:320];
+                [self moveViewWithX:TOP_VIEW_WIDTH];
             } completion:^(BOOL finished) {
                 
                 [self popViewControllerAnimated:NO];
