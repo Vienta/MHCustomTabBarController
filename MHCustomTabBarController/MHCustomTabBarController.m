@@ -40,22 +40,28 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
     [super viewDidLoad];
     
     self.viewControllersByIdentifier = [NSMutableDictionary dictionary];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newViewControllerWillShow:) name:MHNavigationControllerViewControllerWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newViewControllerDidShow:) name:MHNavigationControllerViewControllerDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushViewController:) name:MHTabBarControllerViewControllerPushNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popViewController:) name:MHTabBarControllerViewControllerPopNotification object:nil];
 }
 
-- (void)newViewControllerWillShow:(NSNotification *)noti
+- (void)pushViewController:(NSNotification *)noti
 {
     UIViewController *notiViewController = noti.object;
     MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
     UIViewController *rootViewController = [[nav viewControllers] objectAtIndex:0];
     if (![notiViewController isEqual:rootViewController]) {
         [rootViewController.view addSubview:self.tabbar];
-    } else {
-        
     }
     [self tabbarConstraint];
-    
+}
+
+- (void)popViewController:(NSNotification *)noti
+{
+    MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
+    if ([[nav viewControllers] count] <= 1) {
+        [self.view addSubview:self.tabbar];
+    }
+    [self tabbarConstraint];
 }
 
 - (void)tabbarConstraint
@@ -63,18 +69,6 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
     self.tabbar.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:self.tabbar attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.tabbar.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     [self.tabbar.superview addConstraint:constraint1];
-}
-
-- (void)newViewControllerDidShow:(NSNotification *)noti
-{
-    UIViewController *notiViewController = noti.object;
-    MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
-    UIViewController *rootViewController = [[nav viewControllers] objectAtIndex:0];
-    
-    if ([notiViewController isEqual:rootViewController]) {
-        [self.view addSubview:self.tabbar];
-    }
-    [self tabbarConstraint];
 }
 
 -(void) viewWillAppear:(BOOL)animated {

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3C3F86B1A2074AD00EED671 /* ViewControllerTab.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C3F86A1A2074AD00EED671 /* ViewControllerTab.m */; };
 		B3D1FF281A202F7A00063A1B /* MHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D1FF271A202F7A00063A1B /* MHNavigationController.m */; };
+		B3E174631A245782009CA885 /* leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E174621A245782009CA885 /* leftside_shadow_bg@2x.png */; };
 		C5E8BBEE173BA58C00F2C540 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E8BBED173BA58C00F2C540 /* UIKit.framework */; };
 		C5E8BBF0173BA58C00F2C540 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E8BBEF173BA58C00F2C540 /* Foundation.framework */; };
 		C5E8BBF2173BA58C00F2C540 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5E8BBF1173BA58C00F2C540 /* CoreGraphics.framework */; };
@@ -23,8 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3C3F8691A2074AD00EED671 /* ViewControllerTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerTab.h; sourceTree = "<group>"; };
+		B3C3F86A1A2074AD00EED671 /* ViewControllerTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTab.m; sourceTree = "<group>"; };
 		B3D1FF261A202F7A00063A1B /* MHNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHNavigationController.h; sourceTree = "<group>"; };
 		B3D1FF271A202F7A00063A1B /* MHNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHNavigationController.m; sourceTree = "<group>"; };
+		B3E174621A245782009CA885 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "leftside_shadow_bg@2x.png"; path = "MHCustomTabBarController/leftside_shadow_bg@2x.png"; sourceTree = SOURCE_ROOT; };
 		C5E8BBEA173BA58C00F2C540 /* MHCustomTabBarControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MHCustomTabBarControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E8BBED173BA58C00F2C540 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C5E8BBEF173BA58C00F2C540 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,7 +100,10 @@
 			children = (
 				C5E8BBFC173BA58C00F2C540 /* AppDelegate.h */,
 				C5E8BBFD173BA58C00F2C540 /* AppDelegate.m */,
+				B3C3F8691A2074AD00EED671 /* ViewControllerTab.h */,
+				B3C3F86A1A2074AD00EED671 /* ViewControllerTab.m */,
 				C5E8BC05173BA58C00F2C540 /* MainStoryboard.storyboard */,
+				B3E174621A245782009CA885 /* leftside_shadow_bg@2x.png */,
 				C5E8BBF4173BA58C00F2C540 /* Supporting Files */,
 			);
 			path = MHCustomTabBarControllerDemo;
@@ -181,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5E8BBF8173BA58C00F2C540 /* InfoPlist.strings in Resources */,
+				B3E174631A245782009CA885 /* leftside_shadow_bg@2x.png in Resources */,
 				C5E8BC00173BA58C00F2C540 /* Default.png in Resources */,
 				C5E8BC02173BA58C00F2C540 /* Default@2x.png in Resources */,
 				C5E8BC04173BA58C00F2C540 /* Default-568h@2x.png in Resources */,
@@ -212,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C3F86B1A2074AD00EED671 /* ViewControllerTab.m in Sources */,
 				B3D1FF281A202F7A00063A1B /* MHNavigationController.m in Sources */,
 				C5E8BBFA173BA58C00F2C540 /* main.m in Sources */,
 				C5E8BBFE173BA58C00F2C540 /* AppDelegate.m in Sources */,

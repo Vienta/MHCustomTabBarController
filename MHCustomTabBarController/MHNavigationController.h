@@ -1,17 +1,19 @@
 //
-//  MHNavigationController.h
-//  MHCustomTabBarControllerDemo
+//  MLNavigationController.h
+//  MultiLayerNavigation
 //
-//  Created by Vienta on 14/11/22.
-//  Copyright (c) 2014年 Martin Hartl. All rights reserved.
+//  Created by Feather Chan on 13-4-12.
+//  Copyright (c) 2013年 Feather Chan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const MHTabBarControllerViewControllerPushNotification;
+extern NSString *const MHTabBarControllerViewControllerPopNotification;
 
-extern NSString *const MHNavigationControllerViewControllerWillShowNotification;
-extern NSString *const MHNavigationControllerViewControllerDidShowNotification;
+@interface MHNavigationController : UINavigationController <UIGestureRecognizerDelegate>
 
-@interface MHNavigationController : UINavigationController<UINavigationControllerDelegate>
+// Enable the drag to back interaction, Defalt is YES.
+@property (nonatomic,assign) BOOL canDragBack;
 
 @end
