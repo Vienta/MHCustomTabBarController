@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name         = 'MHTabBarController'
-  s.version      = '2.0.2'
+  s.name         = 'DTTabBarController'
+  s.version      = '2.0.3'
   s.platform 	 = :ios
   s.ios.deployment_target = '6.0'
   s.summary      = 'Fork from https://github.com/mhaddl/MHCustomTabBarController. Implement the iOS native hidesBottomBarWhenPushed property'
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   }
   s.source = {
     :git => 'https://github.com/Vienta/MHCustomTabBarController.git',
-    :tag => '2.0.2'
+    :tag => '2.0.3'
   }
   s.source_files = 'MHCustomTabBarController/*.{m,h}'
 end
