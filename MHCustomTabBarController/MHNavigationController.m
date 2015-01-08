@@ -76,7 +76,8 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
         self.interactivePopGestureRecognizer.enabled = NO;
     }
     UIImageView *shadowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"leftside_shadow_bg"]];
-    shadowImageView.frame = CGRectMake(-10, 0, 10, TOP_VIEW.frame.size.height);
+    CGFloat topPoint = ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0) ? 0 : 20;
+    shadowImageView.frame = CGRectMake(-10, topPoint, 10, TOP_VIEW.frame.size.height);
     [TOP_VIEW addSubview:shadowImageView];
     
     UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self

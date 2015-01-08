@@ -66,15 +66,17 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
 
 - (void)tabbarConstraint
 {
-    if (self.tabbar.superview) {
-        self.tabbar.translatesAutoresizingMaskIntoConstraints = NO;
-        NSString *constraintHStr = @"H:|-0-[_tabbar]-0-|";
-        NSArray *constraintH = [NSLayoutConstraint constraintsWithVisualFormat:constraintHStr options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tabbar)];
-        [self.tabbar.superview addConstraints:constraintH];
-        
-        NSString *constraintVStr = @"V:[_tabbar(==49)]-0-|";
-        NSArray *constrintV = [NSLayoutConstraint constraintsWithVisualFormat:constraintVStr options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tabbar)];
-        [self.tabbar.superview addConstraints:constrintV];
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0) {
+        if (self.tabbar.superview) {
+            self.tabbar.translatesAutoresizingMaskIntoConstraints = NO;
+            NSString *constraintHStr = @"H:|-0-[_tabbar]-0-|";
+            NSArray *constraintH = [NSLayoutConstraint constraintsWithVisualFormat:constraintHStr options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tabbar)];
+            [self.tabbar.superview addConstraints:constraintH];
+            
+            NSString *constraintVStr = @"V:[_tabbar(==49)]-0-|";
+            NSArray *constrintV = [NSLayoutConstraint constraintsWithVisualFormat:constraintVStr options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tabbar)];
+            [self.tabbar.superview addConstraints:constrintV];
+        }
     }
 }
 
