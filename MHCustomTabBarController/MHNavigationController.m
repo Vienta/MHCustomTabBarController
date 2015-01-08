@@ -195,8 +195,8 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
         if (!self.backgroundView)
         {
             CGRect frame = TOP_VIEW.frame;
-            
-            self.backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];
+            CGFloat topPoint = [[[UIDevice currentDevice] systemVersion] doubleValue] >= 7.0 ? 0 : 20;
+            self.backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, topPoint, frame.size.width , frame.size.height)];
             [TOP_VIEW.superview insertSubview:self.backgroundView belowSubview:TOP_VIEW];
             
             blackMask = [[UIView alloc]initWithFrame:CGRectMake(0, 0, frame.size.width , frame.size.height)];

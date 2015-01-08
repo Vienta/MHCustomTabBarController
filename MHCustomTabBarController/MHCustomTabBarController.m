@@ -50,6 +50,9 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
     MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
     UIViewController *rootViewController = [[nav viewControllers] objectAtIndex:0];
     if (![notiViewController isEqual:rootViewController]) {
+        if (self.tabbar.superview) {
+            [self.tabbar removeFromSuperview];
+        }
         [rootViewController.view addSubview:self.tabbar];
     }
     [self tabbarConstraint];
@@ -59,9 +62,31 @@ NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotification
 {
     MHNavigationController *nav = (MHNavigationController *)self.destinationViewController;
     if ([[nav viewControllers] count] <= 1) {
+        if (self.tabbar.superview) {
+            [self.tabbar removeFromSuperview];
+        }
         [self.view addSubview:self.tabbar];
     }
     [self tabbarConstraint];
+}
+
+void cleanReoveFromSuperView(UIView *view)
+{
+    if (!view || !view.superview) {
+        return;
+    }
+    
+    NSMutableArray *constraintsToRemove = [NSMutableArray arrayWithCapacity:0];
+    UIView *superView = view.superview;
+    
+    for (NSLayoutConstraint *constraint in superView.constraints) {
+        if (constraint.firstItem == view || constraint.secondItem == view) {
+            [constraintsToRemove addObject:constraint];
+        }
+    }
+    [superView removeConstraints:constraintsToRemove];
+    
+    [view removeFromSuperview];
 }
 
 - (void)tabbarConstraint
