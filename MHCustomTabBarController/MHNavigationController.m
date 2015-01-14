@@ -162,7 +162,6 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
     
     float scale = (x/(20*TOP_VIEW_WIDTH))+0.95;
     float alpha = 0.4 - (x/800);
-    NSLog(@"scale = %f, alpha = %f", scale, alpha);
     
     lastScreenShotView.transform = CGAffineTransformMakeScale(scale, scale);
     blackMask.alpha = alpha;
