@@ -135,6 +135,17 @@ NSString *const MHTabBarControllerViewControllerPopNotification = @"MHTabBarCont
     return [super popViewControllerAnimated:animated];
 }
 
+- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
+{
+    [self.screenShotsList removeAllObjects];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:MHTabBarControllerViewControllerPopNotification object:nil];
+    });
+    
+    return [super popToRootViewControllerAnimated:animated];
+}
+
 #pragma mark - Utility Methods -
 
 // get the current view screen shot
