@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Feather Chan. All rights reserved.
 //
 
-#define KEY_WINDOW  [[UIApplication sharedApplication]keyWindow]
-#define TOP_VIEW  [[UIApplication sharedApplication]keyWindow].rootViewController.view
+#define KEY_WINDOW  [[[UIApplication sharedApplication] delegate] window]
+#define TOP_VIEW  [[[UIApplication sharedApplication] delegate] window].rootViewController.view
 #define TOP_VIEW_WIDTH (TOP_VIEW.frame.size.width)
 
 
