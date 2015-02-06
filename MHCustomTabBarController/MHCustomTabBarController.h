@@ -33,5 +33,6 @@ extern NSString *const MHCustomTabBarControllerViewControllerAlreadyVisibleNotif
 @property (weak, nonatomic) IBOutlet UIView *container;
 @property (nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 @property (weak, nonatomic) IBOutlet UIView *tabbar;
+@property (strong, nonatomic) IBOutlet UIView *window;
 
 @end
